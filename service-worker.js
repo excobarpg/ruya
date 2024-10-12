@@ -5,10 +5,10 @@ self.addEventListener('install', function(event) {
     caches.open('ruyabet-cache').then(function(cache) {
       return cache.addAll([
         '/ruya/',               // Ana sayfa
-        '/ruya/index.html',     // Doğru yol
-        '/ruya/offline.html',   // Eğer offline.html dosyanız varsa
-        '/ruya/logo192.png',    // İkonlar
-        '/ruya/logo512.png'     // İkonlar
+        'index.html',     // Doğru yol
+        'offline.html',   // Eğer offline.html dosyanız varsa
+        'logo192.png',    // İkonlar
+        'logo512.png'     // İkonlar
       ]);
     })
   );
