@@ -1,15 +1,16 @@
 {
   "name": "Ruyabet",
   "short_name": "Ruyabet",
-  "start_url": "https://linkredirect-ry.com/appsite",
+  "start_url": "https://linkredirect-ry.com/appsite",  // Ana ekrana eklenecek link
   "display": "standalone",
   "background_color": "#000000",
-  "theme_color": "#0f4a73",
+  "theme_color": "#ffffff",
   "icons": [
     {
       "src": "logo.png",
-      "type": "image/png",
-      "sizes": "512x512"
+      "sizes": "512x512",
+      "type": "image/png"
     }
-  ]
+  ],
+  "scope": "/"
 }
