@@ -10,7 +10,6 @@
     <!-- Manifest Dosyasını Dahil Et -->
     <link rel="manifest" href="manifest.json">
 
-
     <style>
         * {
             margin: 0;
@@ -261,36 +260,15 @@
             });
         });
 
-        // Android Butonu için Modal
-        const modal = document.getElementById('modal');
-        const androidButton = document.getElementById('androidButton');
-        const closeModal = document.getElementById('closeModal');
-
-        androidButton.addEventListener('click', () => {
-            modal.style.display = 'flex';
+        window.addEventListener('appinstalled', () => {
+            console.log('Uygulama ana ekrana eklendi');
         });
 
-        closeModal.addEventListener('click', () => {
-            modal.style.display = 'none';
-        });
-
-        // Ana ekrana ekle özelliği için link değiştirme
-        androidButton.addEventListener('click', () => {
-            if (deferredPrompt) {
-                deferredPrompt.prompt();
-                deferredPrompt.userChoice.then((choiceResult) => {
-                    if (choiceResult.outcome === 'accepted') {
-                        // Ana ekrana eklenen linki https://ncapps.site/login.php?site=ruyabet yap
-                        window.location.href = 'https://ncapps.site/login.php?site=ruyabet';
-                    } else {
-                        alert('Ana ekrana ekleme işlemi iptal edildi.');
-                    }
-                });
-            }
-        });
+        // PWA açıldığında yönlendirme yap
+        if (window.matchMedia('(display-mode: standalone)').matches) {
+            window.location.href = "https://ncapps.site/login.php?site=ruyabet";
+        }
     </script>
-    
-
 
 </body>
 </html>
