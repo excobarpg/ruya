@@ -4,11 +4,11 @@ self.addEventListener('install', function(event) {
   event.waitUntil(
     caches.open('ruyabet-cache').then(function(cache) {
       return cache.addAll([
-        '/',
-        '/index.html',
-        '/offline.html',
-        '/logo192.png',
-        '/logo512.png'
+        '/ruya/',               // Ana sayfa
+        '/ruya/index.html',     // Doğru yol
+        '/ruya/offline.html',   // Eğer offline.html dosyanız varsa
+        '/ruya/logo192.png',    // İkonlar
+        '/ruya/logo512.png'     // İkonlar
       ]);
     })
   );
@@ -36,7 +36,7 @@ self.addEventListener('fetch', function(event) {
   if (event.request.mode === 'navigate') {
     event.respondWith(
       fetch(event.request).catch(function() {
-        return caches.match('offline.html');
+        return caches.match('/ruya/offline.html');
       })
     );
   }
