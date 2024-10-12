@@ -4,11 +4,12 @@ self.addEventListener('install', function(event) {
   event.waitUntil(
     caches.open('ruyabet-cache').then(function(cache) {
       return cache.addAll([
-        '/ruya/',               // Ana sayfa
-        'index.html',     // Doğru yol
-        'offline.html',   // Eğer offline.html dosyanız varsa
-        'logo192.png',    // İkonlar
-        'logo512.png'     // İkonlar
+        '/ruya/',
+        '/ruya/index.html',
+        '/ruya/offline.html',
+        '/ruya/logo192.png',
+        '/ruya/logo512.png',
+        '/ruya/bg-rb.png'
       ]);
     })
   );
