@@ -6,7 +6,7 @@ self.addEventListener('install', function(event) {
       return cache.addAll([
 
         
-        '/ruya/index.html',
+        'index.html',
         'offline.html',
         'logo192.png',
         'logo512.png',
