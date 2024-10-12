@@ -4,12 +4,12 @@ self.addEventListener('install', function(event) {
   event.waitUntil(
     caches.open('ruyabet-cache').then(function(cache) {
       return cache.addAll([
-        '/ruya/',
-        '/ruya/index.html',
-        '/ruya/offline.html',
-        '/ruya/logo192.png',
-        '/ruya/logo512.png',
-        '/ruya/bg-rb.png'
+        
+        'index.html',
+        'offline.html',
+        'logo192.png',
+        'logo512.png',
+        'bg-rb.png'
       ]);
     })
   );
