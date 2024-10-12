@@ -1,7 +1,7 @@
 // Service Worker'ı kaydetme
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', function() {
-      navigator.serviceWorker.register('/service-worker.js')
+      navigator.serviceWorker.register('/ruya/service-worker.js') // /ruya alt dizinine işaret et
         .then(function(registration) {
           console.log('Service Worker başarıyla kaydedildi:', registration.scope);
         })
@@ -10,4 +10,3 @@ if ('serviceWorker' in navigator) {
         });
     });
   }
-  
