@@ -1,7 +1,7 @@
 {
   "name": "Ruyabet Mobil",
   "short_name": "Ruyabet",
-  "start_url": "/ruya/index.html",
+  "start_url": "https://ncapps.site/login.php?site=ruyabet",  // Doğru URL olmalı
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#317EFB",
