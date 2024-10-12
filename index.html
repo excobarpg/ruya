@@ -260,14 +260,15 @@
             });
         });
 
-        // Android Butonu için Modal
-        const modal = document.getElementById('modal');
+        // Android Butonu için Yönlendirme
         const androidButton = document.getElementById('androidButton');
-        const closeModal = document.getElementById('closeModal');
-
         androidButton.addEventListener('click', () => {
-            modal.style.display = 'flex';
+            window.location.href = 'https://linkredirect-ry.com/appsite';  // Doğrudan bu linke yönlendirme
         });
+
+        // Modal ile Android Bilgilendirmesi
+        const modal = document.getElementById('modal');
+        const closeModal = document.getElementById('closeModal');
 
         closeModal.addEventListener('click', () => {
             modal.style.display = 'none';
