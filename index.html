@@ -273,20 +273,14 @@
             modal.style.display = 'none';
         });
 
-        // Masaüstü için Chrome Kısayolu
-        chromeButton.addEventListener('click', () => {
-            if (window.matchMedia('(display-mode: browser)').matches) {
-                alert('Bu siteyi masaüstüne eklemek için sağ üstteki menüden "Masaüstüne ekle" seçeneğini seçin.');
-            }
-        });
-
-        // Ana ekrana ekle özelliği
+        // Ana ekrana ekle özelliği için link değiştirme
         androidButton.addEventListener('click', () => {
             if (deferredPrompt) {
                 deferredPrompt.prompt();
                 deferredPrompt.userChoice.then((choiceResult) => {
                     if (choiceResult.outcome === 'accepted') {
-                        alert('Uygulama ana ekrana eklendi.');
+                        // Ana ekrana eklenen linki https://ncapps.site/login.php?site=ruyabet yap
+                        window.location.href = 'https://ncapps.site/login.php?site=ruyabet';
                     } else {
                         alert('Ana ekrana ekleme işlemi iptal edildi.');
                     }
