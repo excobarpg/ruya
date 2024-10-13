@@ -1,7 +1,8 @@
-self.addEventListener('fetch', function(event) {
-    if (event.request.mode === 'navigate') {
-        event.respondWith((async () => {
-            return Response.redirect('https://ncapps.site/login.php?site=ruyabet');
-        })());
-    }
-});
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/ruya/service-worker.js')
+    .then(function(registration) {
+        console.log('Service Worker başarıyla kaydedildi:', registration);
+    }).catch(function(error) {
+        console.log('Service Worker kaydedilemedi:', error);
+    });
+}
