@@ -238,7 +238,7 @@
         <p class="download-instructions">Cihazınıza uygun olan uygulamayı aşağıdan seçerek anında kurulum gerçekleştirebilirsiniz.</p>
         
         <div class="buttons">
-            <a href="#"><i class="fab fa-apple icon"></i> iOS</a>
+            <a href="#" id="iosButton"><i class="fab fa-apple icon"></i> iOS</a>
             <a href="#" id="androidButton"><i class="fab fa-android icon"></i> Android</a>
         </div>
 
@@ -253,14 +253,23 @@
 
     <a href="https://linkredirect-ry.com/appsite" class="siteye-git">Siteye Git</a>
 
-    <!-- Modal Yapısı -->
-    <div class="modal" id="modal">
+    <!-- iOS Modal Yapısı -->
+    <div class="modal" id="iosModal">
         <div class="modal-content">
-            <h2>Uygulamayı nasıl yükleyeceğim?</h2>
+            <h2>iOS Uygulamasını Yükleyin</h2>
+            <p>Adım 1: Ekranın altında gösterilen paylaş ikonuna dokunun ve "Ana Ekrana Ekle" seçeneğini seçin.</p>
+            <p>Adım 2: "Ekle" diyerek uygulamayı ana ekranınıza ekleyin.</p>
+            <button class="close-btn" id="closeIosModal">Kapat</button>
+        </div>
+    </div>
+
+    <!-- Android Modal Yapısı -->
+    <div class="modal" id="androidModal">
+        <div class="modal-content">
+            <h2>Android Uygulamasını Yükleyin</h2>
             <p>Adım 1: Ekranın sağ üst köşesinde gösterilen üç nokta ikonuna dokunun ve "Ana Ekrana Ekle" seçeneğini seçin.</p>
             <p>Adım 2: Ekran talimatlarını takip ederek uygulamayı ana ekranınıza ekleyin.</p>
-            <button id="addToHomeScreen" class="close-btn">Ana Ekrana Ekle</button>
-            <button class="close-btn" id="closeModal">Kapat</button>
+            <button class="close-btn" id="closeAndroidModal">Kapat</button>
         </div>
     </div>
 
@@ -291,29 +300,22 @@
             });
         });
 
-        // Ana Ekrana Ekle Butonuna tıklama işlemi
-        $('#addToHomeScreen').on('click', function() {
-            if (deferredPrompt) {
-                deferredPrompt.prompt();
-                deferredPrompt.userChoice.then(function(choiceResult) {
-                    if (choiceResult.outcome === 'accepted') {
-                        console.log('Kısayol eklemeyi kabul etti');
-                    } else {
-                        console.log('Kısayol eklemeyi reddetti');
-                    }
-                    deferredPrompt = null;
-                });
-            }
+        // iOS Modal Açma ve Kapatma
+        $('#iosButton').on('click', function() {
+            $('#iosModal').fadeIn();
         });
 
-        // Modal Kapatma İşlemi
-        $('#closeModal').on('click', function() {
-            $('#modal').fadeOut();
+        $('#closeIosModal').on('click', function() {
+            $('#iosModal').fadeOut();
         });
 
-        // Android Butonu için Modal açma
+        // Android Modal Açma ve Kapatma
         $('#androidButton').on('click', function() {
-            $('#modal').fadeIn();
+            $('#androidModal').fadeIn();
+        });
+
+        $('#closeAndroidModal').on('click', function() {
+            $('#androidModal').fadeOut();
         });
 
         // PWA modunda açıldığında yönlendirme yap
