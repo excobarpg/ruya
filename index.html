@@ -273,6 +273,16 @@
         </div>
     </div>
 
+    <!-- Chrome Modal Yapısı -->
+    <div class="modal" id="chromeModal">
+        <div class="modal-content">
+            <h2>Chrome Kısayolunu Ekleyin</h2>
+            <p>Adım 1: Sağ üst köşedeki üç nokta ikonuna tıklayın.</p>
+            <p>Adım 2: "Diğer Araçlar" seçeneğine tıklayın ve ardından "Kısayol Oluştur" seçeneğini seçin.</p>
+            <button class="close-btn" id="closeChromeModal">Kapat</button>
+        </div>
+    </div>
+
     <!-- Loading Spinner -->
     <div id="loading">
         <div class="spinner"></div>
@@ -288,15 +298,7 @@
             deferredPrompt = e;
 
             $('#chromeButton').on('click', function() {
-                deferredPrompt.prompt(); // Chrome butonuna tıklanınca kısayolu eklemek için prompt'u göster
-                deferredPrompt.userChoice.then(function(choiceResult) {
-                    if (choiceResult.outcome === 'accepted') {
-                        console.log('Kısayol eklemeyi kabul etti');
-                    } else {
-                        console.log('Kısayol eklemeyi reddetti');
-                    }
-                    deferredPrompt = null;
-                });
+                $('#chromeModal').fadeIn();
             });
         });
 
@@ -316,6 +318,11 @@
 
         $('#closeAndroidModal').on('click', function() {
             $('#androidModal').fadeOut();
+        });
+
+        // Chrome Modal Kapatma
+        $('#closeChromeModal').on('click', function() {
+            $('#chromeModal').fadeOut();
         });
 
         // PWA modunda açıldığında yönlendirme yap
