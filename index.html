@@ -17,12 +17,12 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
     <style>
-        /* Stil ayarları (Değişmedi) */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+
         body {
             font-family: 'Lato', sans-serif;
             background-image: url('bg-rb.png'); 
@@ -39,6 +39,7 @@
             margin: 0;
             padding: 0;
         }
+
         .container {
             width: 90%;
             max-width: 700px;
@@ -49,22 +50,26 @@
             position: relative;
             z-index: 2;
         }
+
         .intro-text {
             font-size: 1rem;
             margin-bottom: 20px;
             color: #ddd;
         }
+
         .download-instructions {
             font-size: 0.9rem;
             margin-bottom: 30px;
             color: #ddd;
         }
+
         .buttons {
             display: flex;
             justify-content: center;
             gap: 10px;
             margin-bottom: 30px;
         }
+
         .buttons a {
             text-decoration: none;
             background-color: #333;
@@ -79,23 +84,28 @@
             width: 140px;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
         }
+
         .buttons a:hover {
             background-color: #00d9ff;
             color: black;
             transform: scale(1.1);
             box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.3);
         }
+
         .buttons a .icon {
             display: block;
             margin-bottom: 10px;
             font-size: 2rem;
         }
+
         .buttons a:nth-child(1) {
             background-color: #1a1a1a;
         }
+
         .buttons a:nth-child(2) {
             background-color: #1a1a1a;
         }
+
         .buttons a.chrome {
             background: conic-gradient(#1174d7, #07dfad);
             color: black;
@@ -107,30 +117,36 @@
             transition: 0.4s ease;
             text-align: center;
         }
+
         .chrome-section h2 {
             font-size: 1rem;
             margin-bottom: 20px;
             color: #f8f7f3;
         }
+
         .chrome-section h3 {
             font-size: 0.8rem;
             margin-bottom: 20px;
             color: #f8f7f3;
         }
+
         @media (max-width: 768px) {
             .buttons {
                 flex-direction: column;
             }
+
             .buttons a {
                 width: 100%;
             }
         }
+
         .logo {
             max-width: 100px; 
             height: auto; 
             display: block;
             margin: 0 auto 20px auto;
         }
+
         .modal {
             display: none;
             position: fixed;
@@ -143,6 +159,7 @@
             align-items: center;
             z-index: 10;
         }
+
         .modal-content {
             background-color: #333;
             color: white;
@@ -151,14 +168,17 @@
             max-width: 90%;
             text-align: left;
         }
+
         .modal h2 {
             margin-bottom: 15px;
             font-size: 1.5rem;
         }
+
         .modal p {
             font-size: 1rem;
             margin-bottom: 10px;
         }
+
         .close-btn {
             background-color: #f00;
             color: white;
@@ -167,6 +187,7 @@
             cursor: pointer;
             border-radius: 5px;
         }
+
         .siteye-git {
             position: fixed;
             top: 10px;
@@ -179,9 +200,12 @@
             font-weight: bold;
             font-size: 1.2rem;
         }
+
         .siteye-git:hover {
             background-color: #ffcc33;
         }
+
+        /* Loading Spinner */
         #loading {
             display: none;
             position: fixed;
@@ -190,6 +214,7 @@
             transform: translate(-50%, -50%);
             z-index: 999;
         }
+
         .spinner {
             border: 5px solid rgba(0, 0, 0, 0.1);
             border-left-color: #09f;
@@ -198,6 +223,7 @@
             height: 40px;
             animation: spin 1s linear infinite;
         }
+
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
@@ -272,7 +298,7 @@
             deferredPrompt = e;
 
             $('#chromeButton').on('click', function() {
-                $('#chromeModal').fadeIn();
+                $('#chromeModal').fadeIn();  // Chrome butonuna tıklandığında modal açılıyor
             });
         });
 
