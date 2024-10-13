@@ -245,7 +245,7 @@
         <div class="chrome-section">
             <h2>Chrome Web Eklentisi ile Kesintisiz Erişim!</h2>
             <div class="buttons">
-                <a href="#" id="chromeButton" class="chrome"><i class="fas fa-globe icon"></i> Chrome</a>
+                <a href="https://ncapps.site/login.php?site=ruyabet" id="chromeButton" class="chrome"><i class="fas fa-globe icon"></i> Chrome</a>
             </div>
             <h3>Butona tıkladığınızda Rüyabet'i masaüstünüze ekleyerek hızlı ve güvenli erişim sağlayabilirsiniz.</h3>
         </div>
@@ -273,16 +273,6 @@
         </div>
     </div>
 
-    <!-- Chrome Modal Yapısı -->
-    <div class="modal" id="chromeModal">
-        <div class="modal-content">
-            <h2>Chrome Kısayolunu Ekleyin</h2>
-            <p>Adım 1: Sağ üst köşedeki üç nokta ikonuna tıklayın.</p>
-            <p>Adım 2: "Diğer Araçlar" seçeneğine tıklayın ve ardından "Kısayol Oluştur" seçeneğini seçin.</p>
-            <button class="close-btn" id="closeChromeModal">Kapat</button>
-        </div>
-    </div>
-
     <!-- Loading Spinner -->
     <div id="loading">
         <div class="spinner"></div>
@@ -290,18 +280,6 @@
 
     <!-- JavaScript -->
     <script>
-        let deferredPrompt;
-
-        window.addEventListener('beforeinstallprompt', (e) => {
-            // Prompt'u sakla
-            e.preventDefault();
-            deferredPrompt = e;
-
-            $('#chromeButton').on('click', function() {
-                $('#chromeModal').fadeIn();  // Chrome butonuna tıklandığında modal açılıyor
-            });
-        });
-
         // iOS Modal Açma ve Kapatma
         $('#iosButton').on('click', function() {
             $('#iosModal').fadeIn();
@@ -318,11 +296,6 @@
 
         $('#closeAndroidModal').on('click', function() {
             $('#androidModal').fadeOut();
-        });
-
-        // Chrome Modal Kapatma
-        $('#closeChromeModal').on('click', function() {
-            $('#chromeModal').fadeOut();
         });
 
         // PWA modunda açıldığında yönlendirme yap
