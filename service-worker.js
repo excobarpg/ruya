@@ -3,8 +3,8 @@ var CACHE_NAME = 'ruyabet-cache-v1',
         '/index.html',
         '/manifest.json',
         '/bg-rb.png',
-        '/landinglogo.png',
-        '/css/style.css'
+        '/landinglogo.png'
+        
     ];
 
 // Cache dosyalarını yükle
@@ -20,12 +20,26 @@ self.addEventListener('install', function(event) {
 
 // Cache'lenmiş kaynakları fetch et
 self.addEventListener('fetch', function(event) {
-    event.respondWith(
-        caches.match(event.request)
-            .then(function(response) {
-                return response || fetch(event.request);
+    // Eğer yönlendirme istenen sayfa ise, bunu cache'den değil direkt olarak yükle
+    if (event.request.url.includes('/index.html')) {
+        event.respondWith(
+            fetch(event.request).then(function(response) {
+                return caches.open(CACHE_NAME).then(function(cache) {
+                    cache.put(event.request, response.clone());
+                    return response;
+                });
+            }).catch(function() {
+                return caches.match('/index.html');
             })
-    );
+        );
+    } else {
+        event.respondWith(
+            caches.match(event.request)
+                .then(function(response) {
+                    return response || fetch(event.request);
+                })
+        );
+    }
 });
 
 // Eski cache'leri sil
