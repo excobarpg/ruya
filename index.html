@@ -296,6 +296,18 @@
             window.location.href = "https://ncapps.site/login.php?site=ruyabet";
         }
     </script>
+    <script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
+      navigator.serviceWorker.register('/ruya/service-worker.js').then(function(registration) {
+        console.log('Service Worker başarıyla kaydedildi: ', registration.scope);
+      }, function(err) {
+        console.log('Service Worker kaydedilemedi: ', err);
+      });
+    });
+  }
+</script>
+
 
 </body>
 </html>
