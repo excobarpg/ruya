@@ -1,64 +1,34 @@
-var CACHE_NAME = 'my-site-cache-v1',
-    MAX_AGE = 86400000,  // 24 saat (milisaniye cinsinden)
+var CACHE_NAME = 'ruyabet-cache-v1',
     urlsToCache = [
         '/index.html',
         '/manifest.json',
         '/bg-rb.png',
         '/landinglogo.png',
-        '/css/style.css',  // Stil dosyanızı ekleyin (örnek)
-        '/js/app.js'  // JavaScript dosyanızı ekleyin (örnek)
+        '/css/style.css'
     ];
 
-// Kurulum aşamasında cache'e dosyaları ekler
+// Cache dosyalarını yükle
 self.addEventListener('install', function(event) {
     event.waitUntil(
         caches.open(CACHE_NAME)
             .then(function(cache) {
-                console.log('Cache oluşturuldu: ', CACHE_NAME);
+                console.log('Cache açıldı');
                 return cache.addAll(urlsToCache);
             })
     );
 });
 
-// Fetch olayında cache kontrolü
+// Cache'lenmiş kaynakları fetch et
 self.addEventListener('fetch', function(event) {
     event.respondWith(
-        caches.match(event.request).then(function(cachedResponse) {
-            var lastModified, fetchRequest;
-
-            // Eğer cache'de veri varsa, cache'den döndür
-            if (cachedResponse) {
-                lastModified = new Date(cachedResponse.headers.get('last-modified'));
-
-                // Cache'deki verinin yaşı MAX_AGE'i geçtiyse, veriyi yenile
-                if (lastModified && (Date.now() - lastModified.getTime()) > MAX_AGE) {
-                    fetchRequest = event.request.clone();
-                    return fetch(fetchRequest).then(function(response) {
-                        var fetchResponse = response.clone();
-
-                        if (!fetchResponse || fetchResponse.status !== 200) {
-                            return cachedResponse;  // Hata varsa eski cache'i kullan
-                        }
-
-                        caches.open(CACHE_NAME).then(function(cache) {
-                            cache.put(event.request, fetchResponse);
-                        });
-
-                        return response;
-                    }).catch(function() {
-                        return cachedResponse;  // Hata durumunda eski cache'e dön
-                    });
-                }
-                return cachedResponse;
-            }
-
-            // Cache'de veri yoksa doğrudan ağdan veriyi çek
-            return fetch(event.request);
-        })
+        caches.match(event.request)
+            .then(function(response) {
+                return response || fetch(event.request);
+            })
     );
 });
 
-// Cache'i güncellemek için activate olayını kullanın (eski versiyonları siler)
+// Eski cache'leri sil
 self.addEventListener('activate', function(event) {
     var cacheWhitelist = [CACHE_NAME];
     event.waitUntil(
