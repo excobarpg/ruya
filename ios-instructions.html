@@ -20,7 +20,7 @@
 
         .notification-box {
             position: fixed;
-            bottom: 10px;
+            top: -100px; /* Başlangıçta sayfanın dışında */
             left: 50%;
             transform: translateX(-50%);
             background-color: white;
@@ -29,11 +29,13 @@
             padding: 10px 15px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             font-size: 0.9rem;
-            display: flex;
+            display: none; /* Yalnızca iOS cihazlarda görünür olacak */
             align-items: center;
             justify-content: space-between;
             width: 90%;
             max-width: 400px;
+            transition: top 1s ease;
+            z-index: 10;
         }
 
         .notification-box i {
@@ -61,10 +63,20 @@
             top: 40%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 1500px;
+            width: 1000px;
         }
 
-        @media (max-width: 6600px) {
+        .arrow {
+            position: absolute;
+            top: -50px; /* Ok işareti başlangıçta dışarıda */
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.5rem;
+            color: white;
+            display: none; /* Yalnızca iOS'ta görünür olacak */
+        }
+
+        @media (max-width: 600px) {
             .notification-box {
                 width: 95%;
             }
@@ -75,18 +87,38 @@
 
     <img src="logo/RB-Logo-Gif.gif" alt="Rüyabet Logo" class="logo">
 
-    <div class="notification-box">
+    <div class="notification-box" id="notification">
         <i class="fa fa-share-square"></i>
         <div class="notification-text">
             <p><span class="highlight">Rüyabet iPhone uygulamasını</span> indirmek için <span class="highlight">paylaş simgesine</span> dokunun ve <span class="highlight">Ana Ekrana Ekle</span>.</p>
         </div>
     </div>
 
+    <!-- Ok işareti -->
+    <div class="arrow" id="arrow">↓</div>
+
     <script>
-        // Sayfa yüklendiğinde bildirim görünsün
+        // iOS olup olmadığını kontrol etme
+        function isIOS() {
+            return /iPhone|iPad|iPod/i.test(navigator.userAgent);
+        }
+
+        // Sayfa yüklendiğinde bildirim sadece iOS'ta çalışacak
         window.onload = function() {
-            var notificationBox = document.querySelector('.notification-box');
-            notificationBox.style.display = 'flex'; // Görünür yap
+            if (isIOS()) {
+                var notificationBox = document.getElementById('notification');
+                var arrow = document.getElementById('arrow');
+                
+                // Bildirimi ve oku göster
+                notificationBox.style.display = 'flex';
+                arrow.style.display = 'block';
+
+                // Animasyonla bildirimi ve oku aşağı kaydır
+                setTimeout(function() {
+                    notificationBox.style.top = '20px'; // Bildirim aşağı kayar
+                    arrow.style.top = '100px'; // Ok da ortada olacak şekilde ayarlanır
+                }, 500);
+            }
         };
     </script>
 
