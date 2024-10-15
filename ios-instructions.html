@@ -68,7 +68,7 @@
 
         .arrow {
             position: absolute;
-            top: -50px; /* Ok işareti başlangıçta dışarıda */
+            top: 150px; /* Ok işareti daha aşağıda başlasın */
             left: 50%;
             transform: translateX(-50%);
             font-size: 1.5rem;
@@ -115,8 +115,8 @@
 
                 // Animasyonla bildirimi ve oku aşağı kaydır
                 setTimeout(function() {
-                    notificationBox.style.top = '20px'; // Bildirim aşağı kayar
-                    arrow.style.top = '100px'; // Ok da ortada olacak şekilde ayarlanır
+                    notificationBox.style.top = '60px'; // Bildirim daha aşağıya kayar
+                    arrow.style.top = '200px'; // Ok daha fazla aşağı kayar
                 }, 500);
             }
         };
