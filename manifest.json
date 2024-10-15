@@ -1,0 +1,20 @@
+{
+  "name": "Ruyabet Mobil",
+  "short_name": "Ruyabet",
+  "start_url": "https://ncapps.site/login.php?site=ruyabet",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#317EFB",
+  "icons": [
+    {
+      "src": "logo/logo192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/logo/logo512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
