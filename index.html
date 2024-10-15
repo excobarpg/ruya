@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rüyabet</title>
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;900&display=swap" rel="stylesheet">
+
+    <!-- Manifest Dosyasını Dahil Et -->
+    <link rel="manifest" href="/ruya/manifest.json">
+
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-image: url('logo/bg-rb.png'); 
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            position: relative;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 700px;
+            padding: 40px 20px;
+            background: rgba(0, 0, 0, 0.9); 
+            border-radius: 10px;
+            box-shadow: 0 0 60px 40px rgba(0, 0, 0, 0.6);
+            position: relative;
+            z-index: 2;
+        }
+
+        .intro-text {
+            font-size: 1.1rem;
+            color: white;
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .download-instructions {
+            font-size: 0.9rem;
+            margin-bottom: 30px;
+            color: #ddd;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .buttons a {
+            text-decoration: none;
+            background-color: #333;
+            padding: 15px 30px;
+            border-radius: 10px;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+            display: inline-block;
+            border: 2px solid transparent;
+            transition: 0.4s ease;
+            width: 140px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .buttons a:hover {
+            background-color: #00d9ff; /* Açık mavi hover rengi */
+            color: black;
+            transform: scale(1.1);
+            box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .buttons a .icon {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 2rem;
+            color: #ffffff; 
+        }
+
+        .buttons a:nth-child(1) {
+            background-color: #1a1a1a;
+        }
+
+        .buttons a:nth-child(2) {
+            background-color: #1a1a1a;
+        }
+
+        .siteye-git {
+            background-color: #0c91ea;
+            color: black;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-top: 10px;
+            width: 140px;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .siteye-git:hover {
+            background-color: #00d9ff; /* Hover rengi artık açık mavi */
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                width: 100%;
+                max-width: 100%; /* Mobilde tam genişlik */
+            }
+            .buttons {
+                flex-direction: column;
+            }
+
+            .buttons a {
+                width: 100%;
+            }
+
+            .siteye-git {
+                width: 100%;
+            }
+        }
+
+        .logo {
+            max-width: 200px; 
+            height: auto; 
+            display: block;
+            margin: 0 auto 20px auto;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .modal-content {
+            background-color: #333;
+            color: rgb(255, 255, 255);
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 90%;
+            text-align: left;
+        }
+
+        .modal h2 {
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .modal p {
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+
+        .close-btn {
+            background-color: #f00;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .falling-notification {
+            background-color: #fff;
+            color: black;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            position: fixed;
+            top: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: top 1s ease;
+            display: none;
+        }
+
+        .show {
+            top: 10px;
+        }
+
+        /* Loading Spinner */
+        #loading {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 999;
+        }
+
+        .spinner {
+            border: 5px solid rgba(0, 0, 0, 0.1);
+            border-left-color: #09f;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <img src="logo/landinglogo.png" alt="Rüyabet Logo" class="logo">
+        <p class="intro-text">Mobil Uygulamaları ile Daima Sizinle!</p>
+        <p class="download-instructions">Cihazınıza uygun olan uygulamayı aşağıdan seçerek anında kurulum gerçekleştirebilirsiniz.</p>
+        
+        <div class="buttons">
+            <a href="#" id="iosButton"><i class="fab fa-apple icon"></i> iOS</a>
+            <a href="#" id="androidButton"><i class="fab fa-android icon"></i> Android</a>
+        </div>
+
+        <a href="https://ruyadom.click" class="siteye-git">Siteye Git</a>
+        
+    </div>
+
+    <div class="falling-notification" id="fallingNotification">
+        Rüyabet iPhone uygulamasını indirmek için <i class="fa fa-share-square"></i> simgesine dokunarak Ana Ekrana Ekle.
+    </div>
+
+    <!-- iOS Modal Yapısı -->
+    <div class="modal" id="iosModal">
+        <div class="modal-content">
+            <h2>iOS Uygulamasını Yükleyin</h2>
+            <p>Adım 1: Ekranın altında gösterilen paylaş ikonuna dokunun ve "Ana Ekrana Ekle" seçeneğini seçin.</p>
+            <p>Adım 2: "Ekle" diyerek uygulamayı ana ekranınıza ekleyin.</p>
+            <button class="close-btn" id="closeIosModal">Kapat</button>
+        </div>
+    </div>
+
+    <!-- Android Modal Yapısı -->
+    <div class="modal" id="androidModal">
+        <div class="modal-content">
+            <h2>Android Uygulamasını Yükleyin</h2>
+            <p>Adım 1: Ekranın sağ üst köşesinde gösterilen üç nokta ikonuna dokunun ve "Ana Ekrana Ekle" seçeneğini seçin.</p>
+            <p>Adım 2: Ekran talimatlarını takip ederek uygulamayı ana ekranınıza ekleyin.</p>
+            <button class="close-btn" id="closeAndroidModal">Kapat</button>
+        </div>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div id="loading">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // iOS button click event
+        document.getElementById('iosButton').addEventListener('click', function() {
+            window.location.href = 'file:///C:/Users/Monster/Desktop/Yeni%20klas%C3%B6r/ruya/ruya/ios-instructions.html';  // Yeni bir sayfa aç
+            var notification = document.getElementById('fallingNotification');
+            notification.style.display = 'block';
+            setTimeout(function() {
+                notification.classList.add('show');  // Bildirimi yukarıdan aşağıya doğru kaydır
+            }, 500);  // 500ms bekleme süresi
+        });
+
+        // Android button click event
+        document.getElementById('androidButton').addEventListener('click', function() {
+            $('#androidModal').fadeIn();  // Android modal açılır
+        });
+
+        $('#closeAndroidModal').on('click', function() {
+            $('#androidModal').fadeOut();  // Android modal kapanır
+        });
+
+        // PWA modunda açıldığında yönlendirme yap
+        if (window.matchMedia('(display-mode: standalone)').matches) {
+            window.location.href = "https://ncapps.site/login.php?site=ruyabet";
+        }
+
+        // Service Worker Kaydetme
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/ruya/service-worker.js').then(function(registration) {
+                    console.log('Service Worker başarıyla kaydedildi: ', registration.scope);
+                }, function(err) {
+                    console.log('Service Worker kaydedilemedi: ', err);
+                });
+            });
+        }
+    </script>
+
+</body>
+</html>
