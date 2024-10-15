@@ -20,7 +20,7 @@
 
         .notification-box {
             position: fixed;
-            top: -100px; /* Başlangıçta sayfanın dışında */
+            top: 80vh; /* Bildirim kutusu ekranın %80'inde */
             left: 50%;
             transform: translateX(-50%);
             background-color: white;
@@ -68,7 +68,7 @@
 
         .arrow {
             position: absolute;
-            top: 150px; /* Ok işareti daha aşağıda başlasın */
+            top: 85vh; /* Ok işareti bildirim kutusunun altında olur */
             left: 50%;
             transform: translateX(-50%);
             font-size: 1.5rem;
@@ -115,8 +115,8 @@
 
                 // Animasyonla bildirimi ve oku aşağı kaydır
                 setTimeout(function() {
-                    notificationBox.style.top = '500px'; // Bildirim daha aşağıya kayar
-                    arrow.style.top = '550px'; // Ok daha fazla aşağı kayar
+                    notificationBox.style.top = '80vh'; // Bildirim kutusu ekranın altına yakın olur
+                    arrow.style.top = '85vh'; // Ok da bildirim kutusunun altında kalır
                 }, 500);
             }
         };
