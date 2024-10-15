@@ -246,7 +246,7 @@
         
         <div class="buttons">
             <a href="#" id="iosButton"><i class="fab fa-apple icon"></i> iOS</a>
-            <a href="#" id="androidButton"><i class="fab fa-android icon"></i> Android</a>
+            <a href="file:ruya/apk/Ruyabet.apk" download id="androidButton"><i class="fab fa-android icon"></i> Android</a>
         </div>
 
         <a href="https://ruyadom.click" class="siteye-git">Siteye Git</a>
@@ -257,25 +257,7 @@
         Rüyabet iPhone uygulamasını indirmek için <i class="fa fa-share-square"></i> simgesine dokunarak Ana Ekrana Ekle.
     </div>
 
-    <!-- iOS Modal Yapısı -->
-    <div class="modal" id="iosModal">
-        <div class="modal-content">
-            <h2>iOS Uygulamasını Yükleyin</h2>
-            <p>Adım 1: Ekranın altında gösterilen paylaş ikonuna dokunun ve "Ana Ekrana Ekle" seçeneğini seçin.</p>
-            <p>Adım 2: "Ekle" diyerek uygulamayı ana ekranınıza ekleyin.</p>
-            <button class="close-btn" id="closeIosModal">Kapat</button>
-        </div>
-    </div>
-
-    <!-- Android Modal Yapısı -->
-    <div class="modal" id="androidModal">
-        <div class="modal-content">
-            <h2>Android Uygulamasını Yükleyin</h2>
-            <p>Adım 1: Ekranın sağ üst köşesinde gösterilen üç nokta ikonuna dokunun ve "Ana Ekrana Ekle" seçeneğini seçin.</p>
-            <p>Adım 2: Ekran talimatlarını takip ederek uygulamayı ana ekranınıza ekleyin.</p>
-            <button class="close-btn" id="closeAndroidModal">Kapat</button>
-        </div>
-    </div>
+    
 
     <!-- Loading Spinner -->
     <div id="loading">
@@ -286,21 +268,12 @@
     <script>
         // iOS button click event
         document.getElementById('iosButton').addEventListener('click', function() {
-            window.location.href = 'ios-instructions.html';  // Yeni bir sayfa aç
+            window.location.href = 'file:///C:/Users/Monster/Desktop/Yeni%20klas%C3%B6r/ruya/ruya/ios-instructions.html';  // Yeni bir sayfa aç
             var notification = document.getElementById('fallingNotification');
             notification.style.display = 'block';
             setTimeout(function() {
                 notification.classList.add('show');  // Bildirimi yukarıdan aşağıya doğru kaydır
             }, 500);  // 500ms bekleme süresi
-        });
-
-        // Android button click event
-        document.getElementById('androidButton').addEventListener('click', function() {
-            $('#androidModal').fadeIn();  // Android modal açılır
-        });
-
-        $('#closeAndroidModal').on('click', function() {
-            $('#androidModal').fadeOut();  // Android modal kapanır
         });
 
         // PWA modunda açıldığında yönlendirme yap
