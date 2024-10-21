@@ -16,6 +16,7 @@
             height: 100vh;
             color: white;
             text-align: center;
+            flex-direction: column;
         }
 
         .notification-box {
@@ -59,11 +60,8 @@
         }
 
         .logo {
-            position: absolute;
-            top: 40%;
-            left: 50%;
-            transform: translate(-50%, -50%);
             width: 450px;
+            margin-bottom: 20px;
         }
 
         .arrow {
@@ -74,6 +72,27 @@
             font-size: 1.5rem;
             color: white;
             display: none; /* Yalnızca iOS'ta görünür olacak */
+        }
+
+        .countdown-container {
+            margin-top: 20px;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem;
+            font-weight: bold;
+            color: #1a1a1a;
+            animation: countdownEffect 1s infinite;
+        }
+
+        @keyframes countdownEffect {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
         }
 
         @media (max-width: 600px) {
@@ -90,6 +109,8 @@
 
     <img src="logo/RB-Logo-Gif-min.gif" alt="Rüyabet Logo" class="logo">
 
+    <div class="countdown-container" id="countdown">10</div>
+
     <div class="notification-box" id="notification">
         <i class="fa fa-share-square"></i>
         <div class="notification-text">
@@ -104,6 +125,19 @@
         // iOS olup olmadığını kontrol etme
         function isIOS() {
             return /iPhone|iPad|iPod/i.test(navigator.userAgent);
+        }
+
+        // Geri sayım fonksiyonu
+        function startCountdown() {
+            var countdown = document.getElementById('countdown');
+            var count = 10;
+            var interval = setInterval(function() {
+                count--;
+                countdown.textContent = count;
+                if (count === 0) {
+                    clearInterval(interval);
+                }
+            }, 1000);
         }
 
         // Sayfa yüklendiğinde bildirim sadece iOS'ta çalışacak
@@ -122,6 +156,9 @@
                     arrow.style.top = '85vh'; // Ok işareti de bildirim kutusunun altında olur
                 }, 500); // 500ms bekleme süresi ile animasyonu başlatır
             }
+
+            // Geri sayımı başlat
+            startCountdown();
 
             // 10 saniye sonra başka bir siteye yönlendir
             setTimeout(function() {
