@@ -13,10 +13,11 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            flex-direction: column;
             height: 100vh;
             color: white;
             text-align: center;
-            flex-direction: column;
+            position: relative;
         }
 
         .notification-box {
@@ -62,6 +63,7 @@
         .logo {
             width: 450px;
             margin-bottom: 20px;
+            position: relative; /* Relative positioning to anchor the countdown */
         }
 
         .arrow {
@@ -75,7 +77,10 @@
         }
 
         .countdown-container {
-            margin-top: 40px;
+            position: absolute; /* Logonun üzerine yerleşecek */
+            top: 50%; /* Logonun ortasına yerleştir */
+            left: 50%;
+            transform: translate(-50%, -50%); /* Ortalamak için */
             width: 80px;
             height: 80px;
             border-radius: 50%;
@@ -85,14 +90,15 @@
             align-items: center;
             font-size: 2rem;
             font-weight: bold;
-            color: #1a1a1a;
-            animation: countdownEffect 1s infinite;
+            color: #fff;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
+            animation: countdownEffect 1s infinite ease-in-out;
         }
 
         @keyframes countdownEffect {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
+            0% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.2); } /* Efekt ile hafif büyüme */
+            100% { transform: translate(-50%, -50%) scale(1); }
         }
 
         @media (max-width: 600px) {
@@ -107,9 +113,10 @@
 </head>    
 <body>
 
-    <img src="logo/RB-Logo-Gif-min.gif" alt="Rüyabet Logo" class="logo">
-
-    <div class="countdown-container" id="countdown">10</div>
+    <div class="logo-container">
+        <img src="logo/RB-Logo-Gif-min.gif" alt="Rüyabet Logo" class="logo">
+        <div class="countdown-container" id="countdown">10</div>
+    </div>
 
     <div class="notification-box" id="notification">
         <i class="fa fa-share-square"></i>
