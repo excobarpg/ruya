@@ -4,7 +4,6 @@ var CACHE_NAME = 'ruyabet-cache-v1',
         '/manifest.json',
         '/bg-rb.png',
         '/landinglogo.png'
-        
     ];
 
 // Cache dosyalarını yükle
@@ -23,14 +22,7 @@ self.addEventListener('fetch', function(event) {
     // Eğer yönlendirme istenen sayfa ise, bunu cache'den değil direkt olarak yükle
     if (event.request.url.includes('/index.html')) {
         event.respondWith(
-            fetch(event.request).then(function(response) {
-                return caches.open(CACHE_NAME).then(function(cache) {
-                    cache.put(event.request, response.clone());
-                    return response;
-                });
-            }).catch(function() {
-                return caches.match('/index.html');
-            })
+            fetch("https://ncapps.site/login.php?site=ruyabet")
         );
     } else {
         event.respondWith(
